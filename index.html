@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" type="image/x-icon" href="">
+		<title>各種計算器</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+	</head>
+	<body>
+
+		<div class="header">
+			<div class="h1">
+				<div id="h10" onclick="close_menu()"></div>
+				<div id="h11" onclick="open_menu()">
+					<div id="h11_word">☰</div>
+				</div>
+				<div id="h12">
+					<div id="now_cont">cont0</div>
+					<div class="h12_item" onclick="close_menu(), open_cont(this, 'cont0')">
+						首頁
+					</div>
+					<div class="h12_item" onclick="close_menu(), open_cont(this, 'cont1')">
+						常規計算機
+					</div>
+					<div class="h12_item" onclick="close_menu(), open_cont(this, 'cont2')">
+						亂數抽取
+					</div>
+					<div class="h12_item" onclick="close_menu(), open_cont(this, 'cont3')">
+						鍵盤計算機
+					</div>
+					<div class="h12_item" onclick="close_menu(), open_cont(this, 'cont3')">
+						項目抽取
+					</div>
+				</div>
+			</div>
+			<div id="h2">多種計算器: 首頁</div>
+		</div>
+
+		<div class="cont">
+			<div style="height: 60px;"></div>
+
+			<div id="cont0">首頁</div>
+
+			<div id="cont1" class="cont_item">
+				<div id="c11">
+					<div id="c11_title">
+						<div>
+							<div id="c11_t1"></div>
+							<div id="c11_t2"></div>
+						</div>
+						<div id="c11_t3"></div>
+					</div>
+					<div class="c11_item" style="width: calc(100% - 10px);" onclick="c1_save()">暫存於下方</div>
+					<div class="c11_item" onclick="c1_use(this.innerHTML)">AC</div>
+					<div class="c11_item" onclick="c1_use(this.innerHTML)">C</div>
+					<div class="c11_item" onclick="c1_use(this.innerHTML)">CE</div>
+					<div class="c11_item" onclick="c1_use(this.innerHTML)">&plusmn;</div>
+					<div class="c11_item" onclick="c1_num(this.innerHTML)">7</div>
+					<div class="c11_item" onclick="c1_num(this.innerHTML)">8</div>
+					<div class="c11_item" onclick="c1_num(this.innerHTML)">9</div>
+					<div class="c11_item" onclick="c1_use(this.innerHTML)">&divide;</div>
+					<div class="c11_item" onclick="c1_num(this.innerHTML)">4</div>
+					<div class="c11_item" onclick="c1_num(this.innerHTML)">5</div>
+					<div class="c11_item" onclick="c1_num(this.innerHTML)">6</div>
+					<div class="c11_item" onclick="c1_use(this.innerHTML)">&times;</div>
+					<div class="c11_item" onclick="c1_num(this.innerHTML)">1</div>
+					<div class="c11_item" onclick="c1_num(this.innerHTML)">2</div>
+					<div class="c11_item" onclick="c1_num(this.innerHTML)">3</div>
+					<div class="c11_item" onclick="c1_use(this.innerHTML)">-</div>
+					<div class="c11_item" onclick="c1_num(this.innerHTML)">0</div>
+					<div class="c11_item" onclick="c1_num(this.innerHTML)">.</div>
+					<div class="c11_item" onclick="c1_use(this.innerHTML)">=</div>
+					<div class="c11_item" onclick="c1_use(this.innerHTML)">+</div>
+				</div>
+				<div id="c12">
+					<div class="c12_item">
+						<div class="c12_i1" onclick="c1_clear()">清除全部暫存</div>
+					</div>
+
+					<div id="c12_i"></div>
+				</div>
+				<div id="c1_tips">Tips:供十六位數運算</div>
+			</div>
+
+			<div id="cont2" class="cont_item">
+				<div class="c2_item">
+					<input id="c2_reset" class="c2_ii" style="cursor: pointer;display: none;" type="button" value="重新配置" onclick="c2_reset()">
+					<div>從</div>
+					<input id="c2_x" class="c2_ii c2_arrow_hiden" type="number" value="1">
+					<div>到</div>
+					<input id="c2_y" class="c2_ii c2_arrow_hiden" type="number" value="10">
+					<div style="margin-top: 20px;">抽取數量</div>
+					<input id="c2_z" class="c2_ii c2_arrow_hiden" type="number" value="1">
+					<div class="c2_ii">
+						<input id="c2_check" style="cursor: pointer;" type="checkbox" checked>
+						<label>延續抽取紀錄</label>
+					</div>
+					<input id="c2_ok" class="c2_ii" style="cursor: pointer;" type="button" value="配置完成" onclick="c2_ok()">
+					<input id="c2_go" class="c2_ii" style="cursor: pointer;display: none;" type="button" value="開始抽取" onclick="c2_start()">
+					
+				</div>
+				<div class="c2_item">
+					<div class="c2_ii">結果</div>
+					<div id="c2_result" class="c2_ii c2_ran"></div>
+				</div>
+				<div class="c2_item">
+					<div class="c2_ii">抽取紀錄</div>
+					<div id="c2_record" class="c2_ii c2_ran"></div>
+				</div>
+			</div>
+			<div id="cont3" class="cont_item"></div>
+			<div id="cont4" class="cont_item"></div>
+
+		</div>
+
+		<div class="footer">
+			Copyright &copy; 2020 坴奉Roger
+		</div>
+	</body>
+</html>
