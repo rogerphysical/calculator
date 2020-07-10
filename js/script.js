@@ -165,15 +165,19 @@ function c2_ok() {
 	
 }
 function c2_reset() {
-	document.getElementById('c2_x').disabled = false;
-	document.getElementById('c2_y').disabled = false;
-	document.getElementById('c2_z').disabled = false;
-	document.getElementById('c2_check').disabled = false;
-	document.getElementById('c2_ok').style.display = "block";
-	document.getElementById('c2_go').style.display = "none";
-	document.getElementById('c2_reset').style.display = "none";
-	document.getElementById('c2_result').innerHTML = "";
-	document.getElementById('c2_record').innerHTML = "";
+	var judge = confirm("將刪除抽取紀錄\r是否繼續?");
+	if (judge === true) {
+		document.getElementById('c2_x').disabled = false;
+		document.getElementById('c2_y').disabled = false;
+		document.getElementById('c2_z').disabled = false;
+		document.getElementById('c2_check').disabled = false;
+		document.getElementById('c2_ok').style.display = "block";
+		document.getElementById('c2_go').style.display = "none";
+		document.getElementById('c2_reset').style.display = "none";
+		document.getElementById('c2_result').innerHTML = "";
+		document.getElementById('c2_record').innerHTML = "";
+	}
+	
 }
 function c2_start() {
 	var x = parseInt(document.getElementById('c2_x').value);
@@ -182,46 +186,118 @@ function c2_start() {
 	var check = document.getElementById('c2_check').checked;
 	document.getElementById('c2_record').innerHTML += document.getElementById('c2_result').innerHTML;
 	document.getElementById('c2_result').innerHTML = "";
-	if (check === false) {
-		if (y-x+1 >= z) {
-			var record = [];
-			var time = 0;
 
-			while (time < z) {
-				var ran = parseInt(Math.random()*(y-x+1))+x;
-				if (!(record.includes(ran))) {
-					record.push(ran);
-					document.getElementById('c2_result').innerHTML += "<div>"+ran+"</div>";
-					time ++;
-				}
-			}
-		}
-		else {
-			alert("抽取數量過多");
-		}
+	var c2_record = document.getElementById('c2_record').children;
+	var range = y-x+1;
+
+	if (check === false && range < z) {
+		alert("抽取數量過多");
+		return false;
 	}
-	// check === true
+	else if (check === true && range < z+c2_record.length) {
+		alert("抽取數量過多");
+		return false;
+	}
 	else {
-		var c2_record = document.getElementById('c2_record').children;
-		var record_l = c2_record.length;
-		if (y-x+1 >= z+record_l) {
-			var record = [];
-			for (var i = 0; i < record_l; i++) {
+		var record = [];
+		if (check === true) {
+			for (var i = 0; i < c2_record.length; i++) {
 				record.push(parseInt(c2_record[i].innerHTML));
 			}
-			var time = 0;
+		}
 
-			while (time < z) {
-				var ran = parseInt(Math.random()*(y-x+1))+x;
-				if (!(record.includes(ran))) {
-					record.push(ran);
-					document.getElementById('c2_result').innerHTML += "<div>"+ran+"</div>";
-					time ++;
-				}
+		var c2_result = "";
+		var time = 0;
+		while (time < z) {
+			var ran = parseInt(Math.random()*(range))+x;
+			if (!(record.includes(ran))) {
+				record.push(ran);
+				c2_result += "<div>"+ran+"</div>";
+				time ++;
 			}
 		}
-		else {
-			alert("抽取數量過多");
+
+		document.getElementById('c2_result').innerHTML = c2_result;
+		return true;
+	}
+}
+
+function c3_clear_all() {
+	var judge = confirm("確定清空項目?");
+	if (judge === true) {
+		document.getElementById('c3_iii').innerHTML = "";
+	}
+}
+function c3_clear(th) {
+	th.parentNode.parentNode.removeChild(th.parentNode);
+}
+function c3_add() {
+	var c3_ii_t1 = document.getElementById('c3_ii_t1').value;
+	var c3_ii_t2 = document.getElementById('c3_ii_t2').value;
+	if (c3_ii_t1 === "" || c3_ii_t2 < 0) {
+		alert("輸入錯誤");
+	}
+	else {
+		var c3_iii = "<div class=c3_ii_i>";
+		c3_iii += "<div class=c3_ii_i1>"+c3_ii_t1+"</div>";
+		c3_iii += "<div class=c3_ii_i2>"+c3_ii_t2+"</div>";
+		c3_iii += "<input class=c3_ii_i3 type=button value=&times; onclick=c3_clear(this)>";
+		c3_iii += "</div>";
+		document.getElementById('c3_iii').innerHTML += c3_iii;
+	}
+}
+function c3_ok() {
+	document.getElementById('c3_reset').style.display = "block";
+	document.getElementById('c3_go').style.display = "block";
+	document.getElementById('c3_ok').style.display = "none";
+	document.getElementById('c3_ii_t1').disabled = true;
+	document.getElementById('c3_ii_t2').disabled = true;
+	document.getElementById('c3_ii_t3').disabled = true;
+	var c3_ii_i3 = document.getElementsByClassName('c3_ii_i3');
+	for (var i = 0; i < c3_ii_i3.length; i++) {
+		c3_ii_i3[i].disabled = true;
+	}
+	// document.getElementById('c3_check').disabled = true;
+}
+function c3_reset() {
+	document.getElementById('c3_reset').style.display = "none";
+	document.getElementById('c3_go').style.display = "none";
+	document.getElementById('c3_ok').style.display = "block";
+	document.getElementById('c3_ii_t1').disabled = false;
+	document.getElementById('c3_ii_t2').disabled = false;
+	document.getElementById('c3_ii_t3').disabled = false;
+	var c3_ii_i3 = document.getElementsByClassName('c3_ii_i3');
+	for (var i = 0; i < c3_ii_i3.length; i++) {
+		c3_ii_i3[i].disabled = false;
+	}
+	// document.getElementById('c3_check').disabled = false;
+
+	document.getElementById('c3_result').innerHTML = "";
+	document.getElementById('c3_record').innerHTML = "";
+}
+function c3_start() {
+	// var check = document.getElementById('c3_check').checked;
+	document.getElementById('c3_record').innerHTML += document.getElementById('c3_result').innerHTML;
+	document.getElementById('c3_result').innerHTML = "";
+
+	var c3_ii_i2 = document.getElementsByClassName('c3_ii_i2');
+	var item = [];
+	var total = 0;
+	for (var i = 1; i < c3_ii_i2.length; i++) {
+		var value = parseInt(c3_ii_i2[i].innerHTML);
+		item.push(value);
+		total += value;
+	}
+
+	if (total !== 0) {
+		pos = 0;
+		total2 = item[0];
+		var ran = parseInt(Math.random()*total)+1;
+		while (total2 < ran) {
+			pos ++;
+			total2 += item[pos];
 		}
+
+		document.getElementById('c3_result').innerHTML = "<div>"+document.getElementsByClassName('c3_ii_i1')[pos+1].innerHTML+"</div>";
 	}
 }
