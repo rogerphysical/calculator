@@ -89,11 +89,11 @@
 				<div class="c2_item">
 					<input id="c2_reset" class="c2_ii" style="cursor: pointer;display: none;" type="button" value="重新配置" onclick="c2_reset()">
 					<div>從</div>
-					<input id="c2_x" class="c2_ii c2_arrow_hiden" type="number" value="1" oninput="value=value.replace('.','')">
+					<input id="c2_x" class="c2_ii c2_arrow_hiden" type="number" value="1" oninput="value=value.replace('.','')" onfocus="this.select()">
 					<div>到</div>
-					<input id="c2_y" class="c2_ii c2_arrow_hiden" type="number" value="2" oninput="value=value.replace('.','')">
+					<input id="c2_y" class="c2_ii c2_arrow_hiden" type="number" value="2" oninput="value=value.replace('.','')" onfocus="this.select()">
 					<div style="margin-top: 20px;">抽取數量</div>
-					<input id="c2_z" class="c2_ii c2_arrow_hiden" type="number" value="1" oninput="value=value.replace('.','')">
+					<input id="c2_z" class="c2_ii c2_arrow_hiden" type="number" value="1" oninput="value=value.replace('.','')" onfocus="this.select()">
 					<div class="c2_ii">
 						<input id="c2_check" style="cursor: pointer;" type="checkbox" checked>
 						<label>延續抽取紀錄</label>
@@ -116,8 +116,8 @@
 					<input id="c3_reset" class="c2_ii" style="cursor: pointer;display: none;" type="button" value="重新配置" onclick="c3_reset()">
 					<div class="c2_ii">
 						<div id="c3_ii_t">
-							<input id="c3_ii_t1" type="text" placeholder="項目">
-							<input id="c3_ii_t2" type="number" placeholder="權重" value="1" oninput="value=value.replace('.','')">
+							<input id="c3_ii_t1" type="text" placeholder="項目" onfocus="this.select()">
+							<input id="c3_ii_t2" type="number" placeholder="權重" value="1" oninput="value=value.replace('.','')" onfocus="this.select()">
 							<input id="c3_ii_t3" type="button" value="+" onclick="c3_add(this)">
 						</div>
 

@@ -126,7 +126,13 @@ function c1_save() {
 	var c12_i = document.getElementById('c12_i');
 	var c11_t3 = document.getElementById('c11_t3').innerHTML;
 	if (c12_i.children.length < 10 && c11_t3 !== "") {
-		c12_i.innerHTML += "<div class=c12_item><input class=c12_i0 type=text placeholder=註解><div class=c12_i1 onclick=c1_show(this.innerHTML)>"+c11_t3+"</div><div class=c12_i2 onclick=c1_clear2(this)>&times;</div></div>";
+		var cont = "<div class=c12_item>";
+		cont += "<div class=c12_i1 onclick=c1_show(this.innerHTML)>";
+		cont += c11_t3;
+		cont += "</div>";
+		cont += "<div class=c12_i2 onclick=c1_clear2(this)>&times;</div></div>";
+		cont += "</div>";
+		c12_i.innerHTML += cont;
 	}
 	else if (c12_i.children.length >= 10) {
 		alert("儲存過多!");

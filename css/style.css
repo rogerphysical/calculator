@@ -164,17 +164,9 @@ body {
 	border-radius: 10px;
 	overflow: hidden;
 }
-.c12_i0 {
+.c12_i1 {
 	float: left;
-	width: 80px;
-	height: calc(100% - 20px);
-	margin: 10px;
-	padding-left: 8px;
-	font-size: 20px;
-}
-.c12_i1, .c12_i3 {
-	float: left;
-	width: calc(100% - 140px);
+	width: calc(100% - 40px);
 	border-radius: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
