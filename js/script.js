@@ -81,18 +81,25 @@ function c1_use(use) {
 			var c11_t2 = document.getElementById('c11_t2').innerHTML;
 			var c11_t3 = document.getElementById('c11_t3').innerHTML;
 			if (c11_t1 !== "" && c11_t2 !== "" && c11_t3 !== "") {
+				//解決浮點數誤差(換成整數)
+				const c11_t1_l = (c11_t1.split('.')[1] || "").length;
+				const c11_t3_l = (c11_t3.split('.')[1] || "").length;
+				const c11_t_op = Math.pow(10, Math.max(c11_t1_l, c11_t3_l));
 				switch(c11_t2) {
 					case "+":
-						var total = parseFloat(c11_t1)+parseFloat(c11_t3);
+						var total = parseInt(c11_t1*c11_t_op+c11_t3*c11_t_op)/c11_t_op;
 						break;
 					case "-":
-						var total = parseFloat(c11_t1)-parseFloat(c11_t3);
+						var total = parseInt(c11_t1*c11_t_op-c11_t3*c11_t_op)/c11_t_op;
 						break;
 					case "×":
-						var total = parseFloat(c11_t1)*parseFloat(c11_t3);
+						const c11_t1_op2 = Math.pow(10, c11_t1_l);
+						const c11_t3_op2 = Math.pow(10, c11_t3_l);
+						const c11_t_op2 = Math.pow(10, c11_t1_l+c11_t3_l);
+						var total = parseInt((c11_t1*c11_t1_op2)*(c11_t3*c11_t3_op2))/c11_t_op2;
 						break;
 					case "÷":
-						var total = parseFloat(c11_t1)/parseFloat(c11_t3);
+						var total = (parseInt(c11_t1*c11_t_op)/parseInt(c11_t3*c11_t_op));
 						break;
 				}
 				document.getElementById('c11_t1').innerHTML = "";
@@ -105,6 +112,7 @@ function c1_use(use) {
 }
 function c1_num(num) {
 	var c11_t3 = document.getElementById('c11_t3').innerHTML;
+	//接受長度
 	if (c11_t3.length < 16) {
 		if (num === ".") {
 			var judge = 0;
